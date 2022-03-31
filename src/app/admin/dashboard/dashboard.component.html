@@ -6,7 +6,10 @@
   <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
-      <a class="nav-link px-3 pointer" (click)="signOut()">Sign out</a>
+      <a class="nav-link px-3 pointer btn btn-danger" (click)="signOut()">
+        Sign out
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </a>
     </div>
   </div>
 </header>
@@ -17,15 +20,15 @@
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
-              <span data-feather="home"></span>
-              Dashboard
+            <a class="nav-link" aria-current="page" routerLink="listado" routerLinkActive="active">
+              <i class="fa-solid fa-cart-shopping"></i>
+              Listado de productos
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file"></span>
-              Orders
+            <a class="nav-link" routerLink="users-panel" routerLinkActive="active">
+              <i class="fa-solid fa-users"></i>
+              Usuarios
             </a>
           </li>
           <li class="nav-item">

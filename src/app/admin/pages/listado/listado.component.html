@@ -1,1 +1,31 @@
-<p>listado works!</p>
+<h1 class="mt-2">Listado de productos</h1>
+<hr>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre del producto</th>
+      <th scope="col">Categoria</th>
+      <th scope="col">Precio</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let producto of productos; let i = index">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{producto.name}}</td>
+      <td>{{producto.category}}</td>
+      <td>{{producto.price | currency}}</td>
+      <td><button class="btn btn-info" (click)="modificar(producto)">
+        <i class="fa-solid fa-pen-to-square"></i>
+        Editar
+      </button></td>
+      <td><button class="btn btn-danger" (click)="borrar(producto)">
+        <i class="fa-solid fa-trash"></i>
+        Borrar
+      </button></td>
+    </tr>
+  </tbody>
+</table>
