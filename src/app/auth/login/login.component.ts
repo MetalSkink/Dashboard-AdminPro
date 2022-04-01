@@ -59,6 +59,7 @@ export class LoginComponent implements OnInit {
           console.log(data);
           this.tokenService.setToken(token);
           this.tokenService.setUserName(name);
+          this.tokenService.setAuthorities(data.roles);
           this.router.navigate(["/dashboard"]);
         },
         error: () => {

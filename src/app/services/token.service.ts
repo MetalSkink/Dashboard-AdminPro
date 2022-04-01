@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class TokenService {
 
+  roles: Array<string> = [];
+
   constructor() { }
 
   public setToken(token: string): void {
@@ -23,6 +25,21 @@ export class TokenService {
 
   public getUserName() {
     return localStorage.getItem('userName');
+  }
+
+  public setAuthorities(authorities: string[]): void {
+    localStorage.removeItem('authorities');
+    localStorage.setItem('authorities', JSON.stringify(authorities));
+  }
+
+  public getAuthorities()  {
+    this.roles = [];
+    if (localStorage.getItem('authorities')) {
+      JSON.parse(localStorage.getItem('authorities')||'{}').forEach((authority: any) => {
+        this.roles.push(authority.authority);
+      });
+    }
+    return this.roles;
   }
 
   public logout(): void {

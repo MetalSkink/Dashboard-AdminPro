@@ -10,12 +10,12 @@ import Swal from 'sweetalert2';
 })
 export class ListadoComponent implements OnInit {
 
+  currentPage = 1;
   productos: Product[] = [];
 
   constructor(private productService : ProductService) {
     this.productService.getProducts().subscribe(
       (data) => {
-        console.log(data.products);
         this.productos = data.products;
       }
     );

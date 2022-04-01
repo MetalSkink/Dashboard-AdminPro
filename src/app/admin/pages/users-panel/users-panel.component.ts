@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/UsersApiResponse';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-users-panel',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersPanelComponent implements OnInit {
 
-  constructor() { }
+  users: User[] = [];
+
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.getUsers();
+  }
+
+  getUsers(){
+    this.userService.getUsers().subscribe(
+      (data) => {
+        console.log(data);
+      }
+    );
   }
 
 }
