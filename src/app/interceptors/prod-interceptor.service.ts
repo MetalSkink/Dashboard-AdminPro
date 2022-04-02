@@ -16,8 +16,6 @@ export class ProdInterceptorService {
         headers: req.headers.set('x-access-token', token)
       });
     }
-    console.log(req);
-
     return next.handle(req);
   }
 }

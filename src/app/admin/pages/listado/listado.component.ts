@@ -10,12 +10,14 @@ import Swal from 'sweetalert2';
 })
 export class ListadoComponent implements OnInit {
 
+  totalPages: number = 1;
   currentPage = 1;
   productos: Product[] = [];
 
   constructor(private productService : ProductService) {
     this.productService.getProducts().subscribe(
       (data) => {
+        this.totalPages = data.totalPages;
         this.productos = data.products;
       }
     );
@@ -26,24 +28,24 @@ export class ListadoComponent implements OnInit {
   }
 
   borrar(product: Product){
-    console.log('borrando producto: ' + product._id);
     Swal.fire({
       title: '¿Esta seguro?',
       text: '¿Esta seguro que quiere borrar el producto: '+product.name+"?",
       icon: 'question',
       showConfirmButton: true,
       showCancelButton: true
-    }).then(resp =>{
-      if (resp.value){
-        // this._proyectService.deleteProyecto(proyecto.idProyecto).subscribe(()=>{
-        //   this._proyectService.getProyectos().subscribe(data=>{
-        //   this.proyectos= data;
-        Swal.fire({
-          title:'Proyecto borrado con exito',
-          icon: 'success'
+    }).then(resp => {
+      if (resp.isConfirmed === true) {
+        this.productService.deleteProduct(product._id).subscribe(() =>{
+          this.productService.getProducts().subscribe((data) => {
+            this.totalPages = data.totalPages;
+            this.productos = data.products;
+            Swal.fire({
+                title:'Proyecto borrado con exito',
+                icon: 'success'
+              })
+          });
         });
-          // })
-          // });
       }
     });
   }
@@ -53,3 +55,12 @@ export class ListadoComponent implements OnInit {
   }
 
 }
+// this.productService.deleteProduct(product._id).subscribe(() =>{
+//   this.productService.getProducts().subscribe(data => {
+//     this.productos = data.products;
+//     Swal.fire({
+//       title:'Proyecto borrado con exito',
+//       icon: 'success'
+//     })
+//   });
+// })

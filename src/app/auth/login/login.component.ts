@@ -56,7 +56,6 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (data) => {
           const {token, name} = data;
-          console.log(data);
           this.tokenService.setToken(token);
           this.tokenService.setUserName(name);
           this.tokenService.setAuthorities(data.roles);

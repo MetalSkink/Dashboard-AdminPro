@@ -19,10 +19,18 @@ export class UsersPanelComponent implements OnInit {
 
   getUsers(){
     this.userService.getUsers().subscribe(
-      (data) => {
-        console.log(data);
+      ({usersFound}) => {
+        this.users= usersFound;
       }
     );
+  }
+
+  modificar(user: User){
+    console.log(user);
+  }
+
+  borrar(user: User){
+    console.log(user);
   }
 
 }

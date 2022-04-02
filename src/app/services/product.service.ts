@@ -21,6 +21,8 @@ export class ProductService {
     return this.httpClient.get<ProductAPIResponse>(`${this.baseUrl}/products?page=${page}&limit=${limit}`);
   }
 
-
+  public deleteProduct(id: string): Observable<any> {
+    return this.httpClient.delete(`${this.baseUrl}/products/${id}`);
+  }
 
 }

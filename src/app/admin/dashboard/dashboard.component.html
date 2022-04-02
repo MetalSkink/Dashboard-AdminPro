@@ -5,6 +5,15 @@
   </button>
   <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
   <div class="navbar-nav">
+    <!-- <div class="nav-item user-name">
+      <i class="fa-solid fa-circle-user"></i> {{userName}}
+    </div> -->
+    <!-- <div class="nav-item text-nowrap">
+      <p class="user-name">
+        <i class="fa-solid fa-circle-user"></i>
+        {{userName}}
+      </p>
+    </div> -->
     <div class="nav-item text-nowrap">
       <a class="nav-link px-3 pointer btn btn-danger" (click)="signOut()">
         Sign out
@@ -25,7 +34,7 @@
               Listado de productos
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="isAdmin">
             <a class="nav-link" routerLink="users-panel" routerLinkActive="active">
               <i class="fa-solid fa-users"></i>
               Usuarios

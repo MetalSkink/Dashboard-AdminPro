@@ -36,7 +36,7 @@ export class TokenService {
     this.roles = [];
     if (localStorage.getItem('authorities')) {
       JSON.parse(localStorage.getItem('authorities')||'{}').forEach((authority: any) => {
-        this.roles.push(authority.authority);
+        this.roles.push(authority);
       });
     }
     return this.roles;
