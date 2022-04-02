@@ -21,6 +21,10 @@ export class ProductService {
     return this.httpClient.get<ProductAPIResponse>(`${this.baseUrl}/products?page=${page}&limit=${limit}`);
   }
 
+  public getProductById(id: string): Observable<Product> {
+    return this.httpClient.get<Product>(`${this.baseUrl}/products/${id}`);
+  }
+
   public createProduct(product: Product): Observable<any> {
     return this.httpClient.post<any>(`${this.baseUrl}/products`, product);
   }
@@ -29,4 +33,7 @@ export class ProductService {
     return this.httpClient.delete(`${this.baseUrl}/products/${id}`);
   }
 
+  public updateProduct(id: string, product: Product): Observable<any> {
+    return this.httpClient.put<any>(`${this.baseUrl}/products/${id}`, product);
+  }
 }

@@ -14,7 +14,7 @@ const routes: Routes = [
       {path: 'listado',component: ListadoComponent, canActivate:[guard], data: {expectedRole: ['user','moderator','admin']}},
       {path: 'users-panel',component: UsersPanelComponent, canActivate:[guard], data: {expectedRole: ['admin']}},
       {path: 'agregar',component: AgregarComponent, canActivate:[guard], data: {expectedRole: ['moderator','admin']}},
-      {path: 'editar/:id',component: AgregarComponent, canActivate:[guard], data: {expectedRole: ['moderator','admin']}},
+      {path: 'modificar/:id',component: AgregarComponent, canActivate:[guard], data: {expectedRole: ['moderator','admin']}},
       {path: '**',redirectTo: 'listado'}
     ]
   }

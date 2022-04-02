@@ -5,11 +5,11 @@ export interface ProductAPIResponse {
 }
 
 export interface Product {
-  _id:       string;
+  _id?:       string;
   name:      string;
   category:  string;
   price:     number;
   imgUrl:    string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Product } from '../../models/ProductAPIResponse';
 import { ProductService } from '../../../services/product.service';
 import Swal from 'sweetalert2';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-agregar',
@@ -11,12 +12,29 @@ import Swal from 'sweetalert2';
 })
 export class AgregarComponent implements OnInit {
 
-  producto!: Product;
+  producto: Product = {
+    name: '',
+    price: 0,
+    category: '',
+    imgUrl: '',
+  };
 
-  constructor(private productService: ProductService,
+  constructor(private activatedRoute: ActivatedRoute,
+              private productService: ProductService,
               private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(({id}) => {
+      if (id){
+        this.productService.getProductById(id).subscribe(
+          (data) => {
+            this.producto = data;
+            this.miFormulario.patchValue(this.producto);
+          }
+        );
+      }
+    })
+
   }
 
   miFormulario: FormGroup = this.fb.group({
@@ -41,8 +59,16 @@ export class AgregarComponent implements OnInit {
       this.miFormulario.markAllAsTouched();
       return;
     }
+    if (this.producto._id) {
+      this.modificarProducto(this.producto._id);
+    }else{
+      this.agregarProducto();
+    }
+  }
+
+
+  agregarProducto(){
     this.producto = this.miFormulario.value;
-    console.log(this.producto);
     this.productService.createProduct(this.producto).subscribe(
       ({name}) => Swal.fire(
         'Producto agregado con exito',
@@ -50,11 +76,17 @@ export class AgregarComponent implements OnInit {
         'success'
       )
     );
-
-
   }
 
-
-
+  modificarProducto(id:string){
+    this.producto = this.miFormulario.value;
+    this.productService.updateProduct(id,this.producto).subscribe(
+      ({name}) => Swal.fire(
+        'Producto modificado con exito',
+        'Se ha modificado el producto ' + name,
+        'success'
+      )
+    );
+  }
 
 }

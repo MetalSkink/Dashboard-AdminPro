@@ -3,6 +3,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { Product } from '../../models/ProductAPIResponse';
 import Swal from 'sweetalert2';
 import { TokenService } from '../../../services/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listado',
@@ -17,7 +18,8 @@ export class ListadoComponent implements OnInit {
   isAdmin = false;
   isModerator: boolean = false;
 
-  constructor(private productService : ProductService,
+  constructor(private router: Router,
+              private productService : ProductService,
               private tokenService: TokenService) {
     const roles = this.tokenService.getAuthorities() || [];
     roles.forEach(role => {
@@ -48,7 +50,7 @@ export class ListadoComponent implements OnInit {
       showCancelButton: true
     }).then(resp => {
       if (resp.isConfirmed === true) {
-        this.productService.deleteProduct(product._id).subscribe(() =>{
+        this.productService.deleteProduct(product._id!).subscribe(() =>{
           this.productService.getProducts().subscribe((data) => {
             this.totalPages = data.totalPages;
             this.productos = data.products;
@@ -63,7 +65,7 @@ export class ListadoComponent implements OnInit {
   }
 
   modificar(product: Product){
-    console.log('modificando producto: ' + product._id);
+    this.router.navigate(['/dashboard/modificar', product._id]);
   }
 
 }
