@@ -1,0 +1,61 @@
+<h1 class="mt-2">Agregar productos</h1>
+<hr>
+
+<form [formGroup]="miFormulario" autocomplete="off" (ngSubmit)="submit()">
+  <div class="row">
+      <div class="form-outline">
+        <label class="form-label" for="form6Example1">Nombre</label>
+        <input type="text" id="form6Example1" formControlName="name" class="form-control" [ngClass]="{
+          'is-invalid': campoNoValido('name'),
+          'is-valid': campoValido('name')
+         }"/>
+        <span class="text-danger" *ngIf="campoNoValido('name')">
+          Este campo es obligatorio
+        </span>
+        <span class="valid-feedback" *ngIf="campoValido('name')">
+          Nombre Valido
+        </span>
+      </div>
+    <div class="col">
+      <div class="form-outline">
+        <label class="form-label" for="form6Example2">Categoria</label>
+        <input type="text" id="form6Example2" formControlName="category" class="form-control" [ngClass]="{
+          'is-invalid': campoNoValido('category'),
+          'is-valid': campoValido('category')
+         }"/>
+        <span class="text-danger" *ngIf="campoNoValido('category')">
+          Este campo es obligatorio
+        </span>
+        <span class="valid-feedback" *ngIf="campoValido('category')">
+          Nombre Valido
+        </span>
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group form-outline space">
+        <span class="input-group-text">$</span>
+        <input type="number" id="form6Example3" formControlName="price" class="form-control" [ngClass]="{
+          'is-invalid': campoNoValido('price'),
+          'is-valid': campoValido('price')
+         }"/>
+      </div>
+    </div>
+  </div>
+  <!-- Text input -->
+  <div class="form-outline">
+    <label class="form-label" for="form6Example4">Url de la imagen</label>
+    <input type="text" id="form6Example4" formControlName="imgUrl" class="form-control" [ngClass]="{
+      'is-invalid': campoNoValido('imgUrl'),
+      'is-valid': campoValido('imgUrl')
+     }"/>
+    <span class="text-danger" *ngIf="campoNoValido('imgUrl')">
+      Este campo es obligatorio
+    </span>
+    <span class="valid-feedback" *ngIf="campoValido('imgUrl')">
+      Nombre Valido
+    </span>
+  </div>
+
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary btn-block mt-3">Place order</button>
+</form>

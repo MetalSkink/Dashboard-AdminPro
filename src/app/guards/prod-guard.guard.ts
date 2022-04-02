@@ -20,7 +20,6 @@ export class ProdGuardGuard implements CanActivate, CanLoad {
       const expectedRole = route.data['expectedRole'];
       const roles = this.tokenService.getAuthorities();
       this.realRole = 'user';
-      console.log(roles);
 
       roles.forEach(rol => {
         if (rol === "moderator") {

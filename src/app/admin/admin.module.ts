@@ -4,6 +4,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ListadoComponent } from './pages/listado/listado.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { UsersPanelComponent } from './pages/users-panel/users-panel.component';
+import { AgregarComponent } from './pages/agregar/agregar.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -11,11 +13,13 @@ import { UsersPanelComponent } from './pages/users-panel/users-panel.component';
   declarations: [
     DashboardComponent,
     ListadoComponent,
-    UsersPanelComponent
+    UsersPanelComponent,
+    AgregarComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

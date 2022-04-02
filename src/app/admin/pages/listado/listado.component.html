@@ -18,11 +18,11 @@
       <td>{{producto.name}}</td>
       <td>{{producto.category}}</td>
       <td>{{producto.price | currency}}</td>
-      <td><button class="btn btn-info" (click)="modificar(producto)">
+      <td *ngIf="isAdmin"><button class="btn btn-info" (click)="modificar(producto)">
         <i class="fa-solid fa-pen-to-square"></i>
         Editar
       </button></td>
-      <td><button class="btn btn-danger" (click)="borrar(producto)">
+      <td *ngIf="isAdmin"><button class="btn btn-danger" (click)="borrar(producto)">
         <i class="fa-solid fa-trash"></i>
         Borrar
       </button></td>

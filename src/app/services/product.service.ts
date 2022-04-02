@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ProductAPIResponse } from '../admin/models/ProductAPIResponse';
+import { Product, ProductAPIResponse } from '../admin/models/ProductAPIResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,10 @@ export class ProductService {
 
   public getProductsByPage(page: number, limit: number): Observable<ProductAPIResponse> {
     return this.httpClient.get<ProductAPIResponse>(`${this.baseUrl}/products?page=${page}&limit=${limit}`);
+  }
+
+  public createProduct(product: Product): Observable<any> {
+    return this.httpClient.post<any>(`${this.baseUrl}/products`, product);
   }
 
   public deleteProduct(id: string): Observable<any> {
