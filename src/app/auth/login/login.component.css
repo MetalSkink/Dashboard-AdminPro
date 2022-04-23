@@ -21,3 +21,13 @@ span{
   font-weight: bold;
   font-size: 15px;
 }
+
+.hide-password{
+  font-size: 1.1em !important;
+  font-weight: bold;
+}
+
+.label-mostrar{
+  font-size: 15px !important;
+  margin-left: 5px;
+}

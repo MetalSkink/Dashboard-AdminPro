@@ -24,11 +24,10 @@
               Correo Valido
             </span>
           </div>
-
           <!-- Password input -->
           <div class="form-outline mb-4">
             <label class="form-label" for="form1Example23">Password</label>
-            <input type="password"
+            <input [type]="miFormulario.value.showPassword ? 'text' : 'password'"
                    id="form1Example23"
                    class="form-control form-control-lg"
                    formControlName="password"
@@ -36,8 +35,15 @@
                     'is-invalid': campoNoValido('password'),
                     'is-valid': campoValido('password')
                    }"/>
+                   <div class="hide-password mt-3">
+                     <input type="checkbox"
+                            formControlName="showPassword"
+                            class="form-check-input"
+                            id="show-password" />
+                     <label class="label-mostrar" for="show-password">Mostrar contraseña</label>
+                   </div>
             <span class="text-danger" *ngIf="campoNoValido('password')">
-              Este campo es obligatorio.
+              Este campo es obligatorio y de almenos 6 caracteres.
             </span>
             <!-- <span class="valid-feedback" *ngIf="campoValido('password')">
               Contraseña

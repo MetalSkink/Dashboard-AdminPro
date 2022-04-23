@@ -6,15 +6,15 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { UsersPanelComponent } from './pages/users-panel/users-panel.component';
 import { AgregarComponent } from './pages/agregar/agregar.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
-
+import { FormUsuarioComponent } from './pages/users-panel/form-usuario.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     ListadoComponent,
     UsersPanelComponent,
-    AgregarComponent
+    AgregarComponent,
+    FormUsuarioComponent
   ],
   imports: [
     CommonModule,
