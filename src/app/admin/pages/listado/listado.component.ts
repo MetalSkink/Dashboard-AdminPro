@@ -8,73 +8,61 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-listado',
   templateUrl: './listado.component.html',
-  styleUrls: ['./listado.component.css']
+  styleUrls: ['./listado.component.css'],
 })
 export class ListadoComponent implements OnInit {
-
   totalPages: number = 1;
   currentPage = 1;
   productos: Product[] = [];
   isAdmin = false;
   isModerator: boolean = false;
 
-  constructor(private router: Router,
-              private productService : ProductService,
-              private tokenService: TokenService) {
+  constructor(
+    private router: Router,
+    private productService: ProductService,
+    private tokenService: TokenService
+  ) {
     const roles = this.tokenService.getAuthorities() || [];
-    roles.forEach(role => {
-      if (role === "admin") {
+    roles.forEach((role) => {
+      if (role === 'admin') {
         this.isAdmin = true;
-      } else if (role === "moderator") {
+      } else if (role === 'moderator') {
         this.isModerator = true;
       }
     });
-    this.productService.getProducts().subscribe(
-      (data) => {
-        this.totalPages = data.totalPages;
-        this.productos = data.products;
-      }
-    );
+    this.getProducts();
   }
 
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  getProducts() {
+    this.productService.getProducts().subscribe((data) => {
+      this.totalPages = data.totalPages;
+      this.productos = data.products;
+    });
   }
 
-  borrar(product: Product){
+  borrar(product: Product) {
     Swal.fire({
       title: '¿Esta seguro?',
-      text: '¿Esta seguro que quiere borrar el producto: '+product.name+"?",
+      text: '¿Esta seguro que quiere borrar el producto: ' + product.name + '?',
       icon: 'question',
       showConfirmButton: true,
-      showCancelButton: true
-    }).then(resp => {
+      showCancelButton: true,
+    }).then((resp) => {
       if (resp.isConfirmed === true) {
-        this.productService.deleteProduct(product._id!).subscribe(() =>{
-          this.productService.getProducts().subscribe((data) => {
-            this.totalPages = data.totalPages;
-            this.productos = data.products;
-            Swal.fire({
-                title:'Proyecto borrado con exito',
-                icon: 'success'
-              })
+        this.productService.deleteProduct(product._id!).subscribe(() => {
+          this.getProducts();
+          Swal.fire({
+            title: 'Proyecto borrado con exito',
+            icon: 'success',
           });
         });
       }
     });
   }
 
-  modificar(product: Product){
+  modificar(product: Product) {
     this.router.navigate(['/dashboard/modificar', product._id]);
   }
-
 }
-// this.productService.deleteProduct(product._id).subscribe(() =>{
-//   this.productService.getProducts().subscribe(data => {
-//     this.productos = data.products;
-//     Swal.fire({
-//       title:'Proyecto borrado con exito',
-//       icon: 'success'
-//     })
-//   });
-// })

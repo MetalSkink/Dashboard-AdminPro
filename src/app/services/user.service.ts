@@ -16,4 +16,8 @@ export class UserService {
   public getUsers(): Observable<UsersAPIResponse> {
     return this.httpClient.get<UsersAPIResponse>(`${this.baseUrl}/users`);
   }
+
+  public deleteUser(id: string): Observable<void> {
+    return this.httpClient.delete<void>(`${this.baseUrl}/users/${id}`);
+  }
 }

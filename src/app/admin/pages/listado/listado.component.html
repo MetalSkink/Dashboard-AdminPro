@@ -1,36 +1,43 @@
 <h1 class="mt-2">Listado de productos</h1>
 <hr>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nombre del producto</th>
-      <th scope="col">Categoria</th>
-      <th scope="col">Precio</th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let producto of productos; let i = index">
-      <th scope="row">{{i + 1}}</th>
-      <td>{{producto.name}}</td>
-      <td>{{producto.category}}</td>
-      <td>{{producto.price | currency}}</td>
-      <td *ngIf="isAdmin"><button class="btn btn-info" (click)="modificar(producto)">
-        <i class="fa-solid fa-pen-to-square"></i>
-        Editar
-      </button></td>
-      <td *ngIf="isAdmin"><button class="btn btn-danger" (click)="borrar(producto)">
-        <i class="fa-solid fa-trash"></i>
-        Borrar
-      </button></td>
-    </tr>
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre del producto</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Precio</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of productos; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{producto.name}}</td>
+        <td>{{producto.category}}</td>
+        <td>{{producto.price | currency}}</td>
+        <td *ngIf="isAdmin">
+          <button class="btn btn-info m-1" (click)="modificar(producto)">
+            <i class="fa-solid fa-pen-to-square"></i>
+            Editar
+          </button>
+        </td>
+        <td *ngIf="isAdmin">
+          <button class="btn btn-danger m-1" (click)="borrar(producto)">
+            <i class="fa-solid fa-trash"></i>
+            Borrar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <nav aria-label="Page navigation example">
+  Pagina {{currentPage}} de {{totalPages}}
   <ul class="pagination justify-content-center">
     <li class="page-item disabled">
       <a class="page-link">Previous</a>

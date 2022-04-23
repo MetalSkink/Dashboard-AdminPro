@@ -19,6 +19,8 @@ export class AgregarComponent implements OnInit {
     imgUrl: '',
   };
 
+  agregar:boolean = true;
+
   constructor(private activatedRoute: ActivatedRoute,
               private productService: ProductService,
               private fb: FormBuilder) { }
@@ -28,6 +30,7 @@ export class AgregarComponent implements OnInit {
       if (id){
         this.productService.getProductById(id).subscribe(
           (data) => {
+            this.agregar = false;
             this.producto = data;
             this.miFormulario.patchValue(this.producto);
           }

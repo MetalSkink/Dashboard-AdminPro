@@ -1,4 +1,8 @@
-<h1 class="mt-2">Agregar productos</h1>
+<h1 class="mt-2" *ngIf="agregar; else agregarTitulo">Agregar productos</h1>
+<ng-template #agregarTitulo>
+  <h1 class="mt-2">Editar productos</h1>
+</ng-template>
+
 <hr>
 
 <form [formGroup]="miFormulario" autocomplete="off" (ngSubmit)="submit()">
