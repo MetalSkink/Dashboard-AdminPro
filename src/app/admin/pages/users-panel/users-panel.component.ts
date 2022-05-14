@@ -39,7 +39,7 @@ export class UsersPanelComponent implements OnInit {
         this.userService.deleteUser(user._id).subscribe(() => {
           this.getUsers();
           Swal.fire({
-            title: 'Proyecto borrado con exito',
+            title: 'Usuario borrado con exito',
             icon: 'success',
           });
         });

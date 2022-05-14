@@ -16,7 +16,7 @@ export class AgregarComponent implements OnInit {
     name: '',
     price: 0,
     category: '',
-    imgUrl: '',
+    imgUrl: 'https://dues.com.mx/duesAdmin/assets/web-page/logos/defaultSF.png',
   };
 
   agregar:boolean = true;
